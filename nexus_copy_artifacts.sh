@@ -29,7 +29,6 @@ curl -X GET -u ${USER}:"${PASSWORD}" http://${HOST}:${PORT}/service/rest/beta/se
 # Read download urls into array
 declare -p urls
 readarray -t urls < ./temp_${REPO}
-echo ${urls[*]}
 # Create temp directory for storing the artifacts - be aware that you got enough free disk space! Of course you can also change the location here ;)
 mkdir -p ./assets
 # wget all artifacts from array
