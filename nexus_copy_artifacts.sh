@@ -9,7 +9,7 @@
 #
 #####################################################################################################
 # Define opts
-while getopts h:P:u:p:r:H:U:W option
+while getopts h:P:u:p:r:H:U:W: option
 do
 case "${option}"
 in
