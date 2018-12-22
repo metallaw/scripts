@@ -7,6 +7,7 @@
 #
 #                      "If it looks stupid but it works, it ain't stupid."
 #
+# ToDo: Add support for maven, npm and docker
 #####################################################################################################
 # Define opts
 while getopts h:P:u:p:r:H:U:W: option
