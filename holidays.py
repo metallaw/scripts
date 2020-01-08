@@ -17,6 +17,8 @@ holidays_exclude = ("Augsburger Friedensfest", "Buß- und Bettag")
 
 # Build request URL
 holiday_api = "https://feiertage-api.de/api/?jahr=%d&nur_land=%s" % (now.year, state)
+# Store result in json object
+
 
 # Check if current day is a holiday
 def holiday_match_today():
@@ -34,7 +36,7 @@ def holiday_match_today():
         return 0
     for i in holiday_check:
         holiday_days.append(holiday_check[i]['datum'])
-    if now.date() in holiday_days:
+    if now.strftime("%Y-%m-%d") in holiday_days:
         print("today is a holiday :)")
         return 1
     else:
