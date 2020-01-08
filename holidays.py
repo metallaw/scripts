@@ -26,16 +26,16 @@ def holiday_match_today():
     # Request the URL
     try:
         holiday_request = requests.get(holiday_api)
-        holiday_check = json.loads(holiday_request.text)
+        holiday_result = json.loads(holiday_request.text)
         # Remove holidays to exclude from the dict
         for holiday in holidays_exclude:
-            if holiday in holiday_check:
-                del holiday_check[holiday]
+            if holiday in holiday_result:
+                del holiday_result[holiday]
     except:
         print("ERROR: API currently not available")
         return 0
-    for i in holiday_check:
-        holiday_days.append(holiday_check[i]['datum'])
+    for i in holiday_result:
+        holiday_days.append(holiday_result[i]['datum'])
     if now.strftime("%Y-%m-%d") in holiday_days:
         print("today is a holiday :)")
         return 1
