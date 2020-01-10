@@ -2,6 +2,7 @@
 ### makes use of the api provided by feiertage-api.de
 ### May be useful for cost savings in cloud environments
 
+import os
 import json
 import requests
 import datetime
@@ -9,16 +10,16 @@ import datetime
 # determine current time
 now = datetime.datetime.now()
 
-# specify the state. Valid parameters: BW, BY, BE, BB, HB, HH, HE, MV, NI, NW, RP, SL, SN, ST, SH, TH
-state = "BY"
+# specify the state. Valid parameters: BW, BY, BE, BB, HB, HH, HE, MV, NI, NW, RP, SL, SN, ST, SH, TH e.g. STATE=BY
+state = str(os.environ.get('STATE'))
+print(state)
 
-# Holidays to exclude since they are no bank holidays when located in Munich
-holidays_exclude = ("Augsburger Friedensfest", "Buß- und Bettag")
+# Holidays to exclude since they are no bank holidays when located in Munich e.g. HOLIDAYS_EXCLUDE='["Augsburger Friedensfest", "Buß- und Bettag"]'
+holidays_exclude = json.loads(os.environ['HOLIDAYS_EXCLUDE'])
+print(holidays_exclude)
 
 # Build request URL
 holiday_api = "https://feiertage-api.de/api/?jahr=%d&nur_land=%s" % (now.year, state)
-# Store result in json object
-
 
 # Check if current day is a holiday
 def holiday_match_today():
@@ -43,4 +44,6 @@ def holiday_match_today():
         print("today is not a holiday :(")
         return 0
 
-holiday_match_today()
+# do stuff when today is a holiday e.g. shutdown ec2 instances
+if holiday_match_today():
+    print("do something")
