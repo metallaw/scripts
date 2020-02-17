@@ -1,4 +1,7 @@
-# Deletes all permissions on cloudwatch loggroups and adds a wildcard permission instead. Useful when you run into the permission limits when having a lot of log-groups to subscribe. 
+# Deletes all permissions on cloudwatch loggroups 
+# and adds a wildcard permission instead. 
+# Useful when you run into the permission limits 
+# when having a lot of log-groups to subscribe 
 
 import json
 import boto3
